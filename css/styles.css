@@ -1,0 +1,373 @@
+/* ============================================================
+   DESIGN TOKENS
+   Defining colors/spacing/fonts as CSS custom properties (variables)
+   means you change your whole site's look by editing values in ONE place,
+   instead of hunting down every hex code in the file.
+   ============================================================ */
+:root {
+  --color-bg: #0f1115;
+  --color-bg-alt: #161a21;
+  --color-text: #e8eaed;
+  --color-text-muted: #a3a9b3;
+  --color-accent: #5eb1ff;
+  --color-accent-soft: rgba(94, 177, 255, 0.15);
+  --color-border: #262b33;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius: 10px;
+  --max-width: 960px;
+}
+
+/* A light theme, applied automatically if the user's OS/browser prefers light mode.
+   This is "progressive enhancement": the site works and looks fine either way. */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-alt: #f5f6f8;
+    --color-text: #1a1d21;
+    --color-text-muted: #565c66;
+    --color-accent: #1d6fd6;
+    --color-accent-soft: rgba(29, 111, 214, 0.1);
+    --color-border: #e3e5e9;
+  }
+}
+
+/* ============================================================
+   RESET / BASE
+   Browsers ship with inconsistent default styling. A small reset
+   like this keeps things predictable across Chrome/Firefox/Safari.
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+/* ============================================================
+   ACCESSIBILITY: skip link
+   Hidden off-screen until it receives keyboard focus (Tab key),
+   at which point it becomes visible so keyboard users can jump
+   straight to the main content instead of tabbing through the nav.
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  background: var(--color-accent);
+  color: #05070a;
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* flex-wrap lets the nav links drop to a second line on very small
+     screens instead of overflowing horizontally. This is what "mobile-first,
+     no fixed pixel widths" looks like in practice. */
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.nav__brand {
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav__links a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+}
+
+.nav__links a:hover,
+.nav__links a:focus-visible {
+  color: var(--color-text);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: var(--space-5) 0 var(--space-4);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem); /* scales smoothly between mobile and desktop */
+  margin-bottom: var(--space-1);
+}
+
+.hero__subtitle {
+  color: var(--color-text-muted);
+  max-width: 40rem;
+  margin: 0 auto var(--space-3);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.button {
+  display: inline-block;
+  padding: 0.65em 1.3em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: #05070a;
+}
+
+.button--secondary {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section {
+  padding: var(--space-4) 0;
+}
+
+.section--alt {
+  background: var(--color-bg-alt);
+}
+
+.section h2 {
+  margin-bottom: var(--space-2);
+}
+
+/* ============================================================
+   RESUME LISTS
+   ============================================================ */
+.entry-list {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.entry {
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-2);
+}
+
+.entry__title {
+  font-weight: 600;
+}
+
+.entry__meta {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 0;
+}
+
+.skills-list li {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   PROJECTS GRID
+   `auto-fit` + `minmax` is what makes this responsive WITHOUT a
+   media query: the browser fits as many ~260px cards per row as
+   will comfortably fit, and reflows to fewer columns automatically
+   as the viewport shrinks.
+   ============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-3);
+}
+
+.project-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.project-card h3 {
+  margin: 0;
+}
+
+.project-card p {
+  color: var(--color-text-muted);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.project-card__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  padding: 0;
+  margin: 0;
+}
+
+.project-card__tags li {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+}
+
+.project-card__links a {
+  margin-right: var(--space-2);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   GOALS TIMELINE
+   ============================================================ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.timeline-entry__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.timeline-entry__header h3 {
+  margin: 0;
+}
+
+.timeline-entry__status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.timeline-entry ul {
+  margin: var(--space-1) 0 0;
+  padding-left: 1.2em;
+}
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3) 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   RESPECT REDUCED-MOTION PREFERENCES
+   Some users get dizzy/nauseated from animation. Honoring this
+   media query is a small thing that matters for accessibility.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

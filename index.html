@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- The viewport tag is what makes a page actually responsive on phones —
+       without it, mobile browsers fake a wide desktop screen and shrink everything. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Basic SEO / link-preview metadata. Fill these in with your real info —
+       this is what shows up when you paste your site link into Slack, iMessage, etc. -->
+  <title>Israel — Portfolio</title>
+  <meta name="description" content="Computer science student at UCF — resume, projects, and semester goals." />
+  <meta name="author" content="Israel" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- type="module" lets the browser load main.js as an ES module, which is what
+       our compiled TypeScript output uses (see tsconfig.json -> "module": "ES2020").
+       "defer" tells the browser to run this script only after the HTML is parsed,
+       so it can safely look up elements by id without them being missing yet. -->
+  <script type="module" src="dist/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Accessibility note: a "skip to content" link lets keyboard and screen-reader
+       users jump past the nav bar instead of tabbing through every link first.
+       It's visually hidden until it receives keyboard focus (see styles.css). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="#top">Israel</a>
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#goals">Goals</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO / ABOUT ---------------------------------------------------- -->
+    <section id="top" class="hero">
+      <div class="container">
+        <h1>Hi, I'm Israel.</h1>
+        <p class="hero__subtitle">
+          Computer science student at UCF · Resident Assistant · building this site
+          to learn TypeScript, and AWS.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#projects">See my projects</a>
+          <a class="button button--secondary" href="#resume">View resume</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <!-- Placeholder — replace with a few real sentences about yourself:
+             what you study, what you're into, what kind of role you're aiming for. -->
+        <p>
+          A short paragraph about who you are, what you're studying at UCF, and what
+          kind of work you're looking for. Keep it to 3–5 sentences — this is the
+          "elevator pitch" version of your resume section below.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUME ------------------------------------------------------------
+         The actual entries are defined as TypeScript data in
+         src/data/resume.ts and rendered into the lists below by src/main.ts.
+         That's deliberate: it's good practice to separate your CONTENT (data)
+         from your STRUCTURE (HTML) — update your resume by editing one array,
+         not by hunting through HTML tags. -->
+    <section id="resume" class="section section--alt">
+      <div class="container">
+        <h2>Resume</h2>
+
+        <h3>Education</h3>
+        <ul id="education-list" class="entry-list" aria-label="Education history">
+          <!-- filled in by TypeScript at runtime -->
+        </ul>
+
+        <h3>Experience</h3>
+        <ul id="experience-list" class="entry-list" aria-label="Work experience">
+          <!-- filled in by TypeScript at runtime -->
+        </ul>
+
+        <h3>Skills</h3>
+        <ul id="skills-list" class="skills-list" aria-label="Skills">
+          <!-- filled in by TypeScript at runtime -->
+        </ul>
+
+        <p class="resume__download">
+          <!-- Once you have a real PDF resume, drop it in this folder and update the href. -->
+          <a class="button button--secondary" href="resume.pdf" download>Download PDF resume</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS ------------------------------------------------------- -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div id="projects-grid" class="projects-grid" aria-label="Projects">
+          <!-- filled in by TypeScript at runtime, from src/data/projects.ts -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GOALS BY SEMESTER ------------------------------------------------
+         This is the "living" part of the site — update src/data/goals.ts
+         each semester and this section updates itself. -->
+    <section id="goals" class="section section--alt">
+      <div class="container">
+        <h2>Goals by Semester</h2>
+        <div id="goals-timeline" class="timeline" aria-label="Semester goals">
+          <!-- filled in by TypeScript at runtime -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT ---------------------------------------------------------- -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>The best ways to reach me:</p>
+        <ul class="contact-list">
+          <li><a href="mailto:you@example.com">you@example.com</a></li>
+          <li><a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Israel. Built with HTML, CSS, and TypeScript.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

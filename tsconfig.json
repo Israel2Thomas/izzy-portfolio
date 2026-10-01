@@ -1,0 +1,31 @@
+{
+  // This file tells the TypeScript compiler (tsc) how to turn your .ts files into
+  // plain .js files that a browser can actually run. Browsers do not understand
+  // TypeScript directly — tsc's whole job is to check your types and then "erase"
+  // them, producing normal JavaScript.
+  "compilerOptions": {
+    /* --- Where files come from / go to --- */
+    "rootDir": "src",              // your TypeScript source lives here
+    "outDir": "dist",               // compiled JavaScript is written here
+
+    /* --- What JS to produce --- */
+    "target": "ES2020",             // modern JS features are fine (recent browsers)
+    "module": "ES2020",             // emit ES modules (import/export), which index.html
+                                     // loads directly via <script type="module">
+    "moduleResolution": "Bundler",
+
+    /* --- Strictness: turn these OFF at your own risk. They catch real bugs. --- */
+    "strict": true,                 // enables all strict type-checking options
+    "noUnusedLocals": true,         // flags variables you declared but never used
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,      // every code path in a function must return (if it should)
+    "noFallthroughCasesInSwitch": true,
+
+    /* --- Quality of life --- */
+    "sourceMap": true,              // lets browser devtools show your .ts source, not just compiled .js
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
+}

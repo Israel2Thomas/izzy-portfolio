@@ -1,0 +1,14 @@
+{
+  "name": "izzy-portfolio",
+  "version": "0.1.0",
+  "description": "Israel's digital resume / portfolio site — built while learning TypeScript, HTML/CSS, and (eventually) AWS.",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx serve . -l 5500"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
